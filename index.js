@@ -1,8 +1,11 @@
+require('dotenv').config()
+
 const express = require("express");
 const app = express();
 const {typeError} = require('./middleware/errors');
 const cors = require('cors')
-const PORT = 3000;
+
+const PORT = process.env.PORT || 3001;
 
 //MIDDLEWARE (funcion que ejecutas antes de las rutas)
 app.use(express.json());

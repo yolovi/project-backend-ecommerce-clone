@@ -1,5 +1,5 @@
 //IMPORT
-const { Order, Product, User } = require("../models/index.js");
+const { Order, Product } = require("../models/index.js");
 
 const OrderController = {
   async insert(req, res) {

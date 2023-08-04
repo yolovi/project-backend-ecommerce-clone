@@ -154,7 +154,7 @@ Don't forget to give the project a star! Thanks again!
 ## 📫 How to reach me:
 
 
-<a href="https://www.linkedin.com/in/yolanda-lv/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+<a href="https://www.linkedin.com/in/yolovi/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
 📩 Or if you want to send me an email: **yolandalopevi@gmail.com**
 
