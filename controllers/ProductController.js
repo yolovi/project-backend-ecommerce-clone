@@ -4,20 +4,6 @@ const { Op } = Sequelize;
 
 //CONTROLADORES
 const ProductController = {
-  // async insert(req, res, next) {
-  //   try {
-  //     const product = await Product.create({
-  //       ...req.body,
-  //       UserId: req.user.id,
-  //     });
-  //     res
-  //       .status(201)
-  //       .send({ message: "Product created successfully", product });
-  //   } catch (error) {
-  //     console.error(error);
-  //     next(error);
-  //   }
-  // },
 
   async addProduct(req, res, next) {
     try {
@@ -38,21 +24,6 @@ const ProductController = {
       next(error);
     }
   },
-
-  //   async addProduct(req, res) {
-  //     try {
-  //         if (req.file) req.body.image_path = req.file.filename; //Verifica si se ha subido un archivo (imagen) en la solicitud (req.file). Si es así, asigna el nombre del archivo al campo image_path en el objeto req.body
-  //         const product = await Product.create({
-  //           ...req.body,
-  //           UserId: req.user.id,
-  //         })
-  //         //await Category.findByIdAndUpdate(req.body.CategoryId, { $push: { productIds: product._id } });
-  //         res.status(201).send({ message: "Product created successfully", product })
-  //     } catch (error) {
-  //         console.error(error)
-  //         next(error)
-  //     }
-  // },
 
   async update(req, res) {
     try {
