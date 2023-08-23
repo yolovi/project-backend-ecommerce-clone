@@ -36,11 +36,15 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-    },
-    {
-      sequelize,
-      modelName: "Product",
-    }
-  );
+   image_path: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+},
+{
+  sequelize,
+  modelName: "Product",
+}
+);
   return Product;
 };

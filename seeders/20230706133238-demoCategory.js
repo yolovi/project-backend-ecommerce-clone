@@ -4,12 +4,12 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert("Categories", [
       {
-        name_category: "Wall Lights",
+        name_category: "Wall Lamps",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        name_category: "Pendant Lights",
+        name_category: "Pendant Lamps",
         createdAt: new Date(),
         updatedAt: new Date(),
       },

@@ -4,20 +4,56 @@ const { Op } = Sequelize;
 
 //CONTROLADORES
 const ProductController = {
-  async insert(req, res, next) {
+  // async insert(req, res, next) {
+  //   try {
+  //     const product = await Product.create({
+  //       ...req.body,
+  //       UserId: req.user.id,
+  //     });
+  //     res
+  //       .status(201)
+  //       .send({ message: "Product created successfully", product });
+  //   } catch (error) {
+  //     console.error(error);
+  //     next(error);
+  //   }
+  // },
+
+  async addProduct(req, res, next) {
     try {
-      const product = await Product.create({
-        ...req.body, 
-        UserId: req.user.id, 
-      }); 
-      res 
+      const productData = {
+        ...req.body,
+        UserId: req.user.id,
+        // Verifica si se ha subido una imagen y asigna el nombre del archivo al campo image_path en productData
+        image_path: req.file ? req.file.filename : null,
+      };
+
+      const product = await Product.create(productData);
+      //await Category.findByIdAndUpdate(req.body.CategoryId, { $push: { productIds: product._id } });
+      res
         .status(201)
         .send({ message: "Product created successfully", product });
     } catch (error) {
       console.error(error);
-      next(error)
+      next(error);
     }
   },
+
+  //   async addProduct(req, res) {
+  //     try {
+  //         if (req.file) req.body.image_path = req.file.filename; //Verifica si se ha subido un archivo (imagen) en la solicitud (req.file). Si es así, asigna el nombre del archivo al campo image_path en el objeto req.body
+  //         const product = await Product.create({
+  //           ...req.body,
+  //           UserId: req.user.id,
+  //         })
+  //         //await Category.findByIdAndUpdate(req.body.CategoryId, { $push: { productIds: product._id } });
+  //         res.status(201).send({ message: "Product created successfully", product })
+  //     } catch (error) {
+  //         console.error(error)
+  //         next(error)
+  //     }
+  // },
+
   async update(req, res) {
     try {
       const rowUpdated = await Product.update(req.body, {
@@ -36,7 +72,7 @@ const ProductController = {
         .status(201)
         .send({ msg: "Product updated successfully", productUpdated });
     } catch (error) {
-      res.status(500).send({message: "Error updating product", error});
+      res.status(500).send({ message: "Error updating product", error });
     }
   },
   async delete(req, res) {
@@ -48,16 +84,13 @@ const ProductController = {
       });
       res.status(200).send("Product deleted successfully");
     } catch (error) {
-      res.status(500).send({ message: "Error deleting product", error});
+      res.status(500).send({ message: "Error deleting product", error });
     }
   },
   async getAll(req, res) {
     try {
       const products = await Product.findAll({
-        include: [
-          { model: Category, 
-            attributes: ["name_category"] }
-        ],
+        include: [{ model: Category, attributes: ["name_category"] }],
       });
       res.status(200).send(products);
     } catch (error) {

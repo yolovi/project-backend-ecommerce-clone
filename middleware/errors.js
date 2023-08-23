@@ -17,6 +17,8 @@ const handleValidationError = (err, res) => {
     } else {
       res.status(500).send({ msg: "Something went wrong",err });
     }
+
+    next(err);
   };
   
   module.exports = {typeError} ;
