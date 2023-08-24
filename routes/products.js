@@ -8,7 +8,6 @@ const { typeError } = require('../middleware/errors');
 
 
 //ROUTES
-// router.post('/', authentication, ProductController.insert); 
 router.post('/', authentication, isAdmin, uploadUserProductsImages.single('imageProduct'), ProductController.addProduct);
 router.put('/id/:id', authentication, ProductController.update);
 router.get('/id/:id',ProductController.getById);
