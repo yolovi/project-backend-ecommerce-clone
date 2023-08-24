@@ -1,6 +1,7 @@
 //IMPORT
 const { Product, Category, Sequelize } = require("../models/index.js");
 const { Op } = Sequelize;
+const path = require('path');
 
 //CONTROLADORES
 const ProductController = {
@@ -145,8 +146,20 @@ const ProductController = {
       res.status(500).send(err);
     }
   },
-
   
+
+  async serveProductImage(req, res) {
+    try {
+      const imageName = req.params.imageName;
+      const imagePath = path.join(__dirname, '../public/images/user/products', imageName);
+    
+      console.log(`Serving image: ${imagePath}`);
+    
+      res.sendFile(imagePath);
+    } catch (error) {
+      res.status(500).send({ message: "Error serving product image", error });
+    }
+  },
 };
 
 module.exports = ProductController;
