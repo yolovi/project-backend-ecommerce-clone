@@ -44,6 +44,12 @@ module.exports = (sequelize, DataTypes) => {
 {
   sequelize,
   modelName: "Product",
+    // Agregar una propiedad virtual para la URL de la imagen
+    getterMethods: {
+      image_url() {
+        return `/public/images/user/products/${this.image_path}`; // Cambia la ruta según tu estructura de carpetas
+      },
+    },
 }
 );
   return Product;

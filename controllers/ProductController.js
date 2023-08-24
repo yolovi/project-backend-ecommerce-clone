@@ -63,7 +63,11 @@ const ProductController = {
       const products = await Product.findAll({
         include: [{ model: Category, attributes: ["name_category"] }],
       });
-      res.status(200).send(products);
+      const productsWithImageUrls = products.map(product => ({
+        ...product.toJSON(),
+        image_url: `/public/images/user/products/${product.image_path}`, // Cambia la ruta según tu estructura de carpetas
+      }));
+      res.status(200).send(productsWithImageUrls);
     } catch (error) {
       res.status(500).send({ message: "Error loading products", error });
     }
@@ -141,6 +145,8 @@ const ProductController = {
       res.status(500).send(err);
     }
   },
+
+  
 };
 
 module.exports = ProductController;
