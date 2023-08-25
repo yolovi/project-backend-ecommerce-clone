@@ -1,11 +1,10 @@
 //IMPORT
 const { Product, Category, Sequelize } = require("../models/index.js");
 const { Op } = Sequelize;
-const path = require('path');
+const path = require("path");
 
 //CONTROLADORES
 const ProductController = {
-
   async addProduct(req, res, next) {
     try {
       const productData = {
@@ -64,7 +63,7 @@ const ProductController = {
       const products = await Product.findAll({
         include: [{ model: Category, attributes: ["name_category"] }],
       });
-      const productsWithImageUrls = products.map(product => ({
+      const productsWithImageUrls = products.map((product) => ({
         ...product.toJSON(),
         image_url: `/public/images/user/products/${product.image_path}`, // Cambia la ruta según tu estructura de carpetas
       }));
@@ -77,6 +76,7 @@ const ProductController = {
     try {
       const product = await Product.findByPk(req.params.id);
       res.send(product);
+      
     } catch (err) {
       res.status(500).send(err);
     }
@@ -146,15 +146,14 @@ const ProductController = {
       res.status(500).send(err);
     }
   },
-  
-
   async serveProductImage(req, res) {
     try {
       const imageName = req.params.imageName;
-      const imagePath = path.join(__dirname, '../public/images/user/products', imageName);
-    
-      console.log(`Serving image: ${imagePath}`);
-    
+      const imagePath = path.join(
+        __dirname,
+        "../public/images/user/products",
+        imageName
+      );
       res.sendFile(imagePath);
     } catch (error) {
       res.status(500).send({ message: "Error serving product image", error });

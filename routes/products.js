@@ -7,13 +7,7 @@ const { uploadUserProductsImages } = require("../middleware/multer");
 const { typeError } = require("../middleware/errors");
 
 //ROUTES
-router.post(
-  "/",
-  authentication,
-  isAdmin,
-  uploadUserProductsImages.single("imageProduct"),
-  ProductController.addProduct
-);
+router.post("/", authentication, isAdmin, uploadUserProductsImages.single("imageProduct"), ProductController.addProduct);
 router.put("/id/:id", authentication, ProductController.update);
 router.get("/id/:id", ProductController.getById);
 router.get("/name_product/:name_product", ProductController.getOneByName);
