@@ -75,8 +75,20 @@ const ProductController = {
   },
   async getById(req, res) {
     try {
-      const product = await Product.findByPk(req.params.id);
-      res.send(product);
+      const product = await Product.findByPk(req.params.id, {
+        include: [{ model: Category, attributes: ["name_category"] }],
+      });
+  
+      if (!product) {
+        return res.status(404).send({ error: "Product not found." });
+      }
+  
+      const productWithImageUrl = {
+        ...product.toJSON(),
+        image_url: `/public/images/user/products/${product.image_path}`,
+      };
+  
+      res.send(productWithImageUrl);
     } catch (err) {
       res.status(500).send(err);
     }
